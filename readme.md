@@ -6,11 +6,11 @@ Extract styled-components's injected CSS and write it into the CSS file!
 
 ## Problem Statement
 
-The [styled-components](https://styled-components.com) library uses the "Speedy mode" to inject styles on production build. That is because styled-components directly inject CSS into CSS Object Model for a lightningly fast CSS rendering.
+The [styled-components](https://styled-components.com) library uses the "Speedy mode" to inject styles on the production build for a lightningly fast CSS rendering.
 
-This makes the styles bypass the DOM and be injected directly inside the CSSOM, thus, appearing in the inspector, but totally invisible on the DOM. Like this: `<style data-styled="" data-styled-version="4.4.0"></style`
+This makes the styles "bypass the DOM" and be injected directly inside the CSSOM, thus, appearing in the inspector, but totally invisible on the DOM. Like this: `<style data-styled="" data-styled-version="4.4.0"></style`
 
-Person having a development version of the website can disable the speedy mode by adding an environmental variable `SC_DISABLE_SPEEDY` (`REACT_APP_SC_DISABLE_SPEEDY` for React).
+A project owner can disable the speedy mode by adding the environment variable `SC_DISABLE_SPEEDY` (`REACT_APP_SC_DISABLE_SPEEDY` for React).
 
 If the React project uses styled-components of a version 5.0+, the App component should be wrapped in StyleSheetManager with a prop disableCSSOMInjection. Example below:
 
@@ -22,7 +22,11 @@ import { StyleSheetManager } from 'styled-components';
 </StyleSheetManager>;
 ```
 
-This simple CSS extractor solves the issue when you need to scrape a website that uses styled-components with CSSOM injection but the CSS rules are not scraped. It uses Puppeteer to launch a headless browser, retrieve the actual contents of the `<style>` element, format it and write it into the .css file. Please enjoy!
+However, if you need to scrape such a website, you can't utilize methods above.
+
+This simple CSS extractor solves the issue when you need to scrape a website that uses styled-components with CSSOM injection but the CSS rules are not scraped.
+
+ It uses Puppeteer to launch a headless browser, retrieve the actual contents of the `<style>` element, format it and write it into the .css file. Please enjoy!
 
 ## Installation
 

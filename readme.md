@@ -12,7 +12,7 @@ This makes the styles "bypass the DOM" and be injected directly inside the CSSOM
 
 A project owner can disable the speedy mode by adding the environment variable `SC_DISABLE_SPEEDY` (`REACT_APP_SC_DISABLE_SPEEDY` for React).
 
-If the React project uses styled-components of a version 5.0+, the App component should be wrapped in StyleSheetManager with a prop disableCSSOMInjection. Example below:
+If the React project uses styled-components of a version 5.0+, the App component should be wrapped in `StyleSheetManager` with a prop `disableCSSOMInjection`:
 
 ```javascript
 import { StyleSheetManager } from 'styled-components';
@@ -22,7 +22,7 @@ import { StyleSheetManager } from 'styled-components';
 </StyleSheetManager>;
 ```
 
-However, if you need to scrape such a website, you can't utilize methods above.
+However, if you need to scrape such a web page as non-owner, you cannot utilize methods above.
 
 This simple CSS extractor solves the issue when you need to scrape a website that uses styled-components with CSSOM injection but the CSS rules are not scraped.
 

@@ -34,7 +34,6 @@ This simple CSS extractor solves the issue when you need to scrape a website tha
 - Open the repository with your editor of choice
 - Run `npm i` or `pnpm i`
 
-
 ## Usage
 
 - Open index.js

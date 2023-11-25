@@ -10,7 +10,7 @@ The [styled-components](https://styled-components.com) library uses the "Speedy 
 
 This makes the styles "bypass the DOM" and be injected directly inside the CSSOM, thus, appearing in the inspector, but totally invisible on the DOM. Like this: `<style data-styled="" data-styled-version="4.4.0"></style`
 
-A project owner can disable the speedy mode by adding the environment variable `SC_DISABLE_SPEEDY` (`REACT_APP_SC_DISABLE_SPEEDY` for React).
+The website developer can disable the speedy mode by adding the environment variable `SC_DISABLE_SPEEDY=true` (`REACT_APP_SC_DISABLE_SPEEDY=true` for React).
 
 If the React project uses styled-components of a version 5.0+, the App component should be wrapped in `StyleSheetManager` with a prop `disableCSSOMInjection`:
 

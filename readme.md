@@ -33,13 +33,15 @@ This simple CSS extractor solves the issue when you need to scrape a website tha
 - Clone the git repository
 - Open the repository with your editor of choice
 - Run `npm i` or `pnpm i`
+
+
+## Usage
+
 - Open index.js
 - Change URL to the necessary one.
 - Run `node index.js`
 
-## Usage
-
-Feel free to use it for any purposes.
+Feel free to use this utility for any purposes.
 
 NB! If Puppeteer fails to launch the browser process, download it with [puppeteer@browsers](https://www.npmjs.com/package/@puppeteer/browsers) and change the `browser` const in the `try` block as in the example below (remember to update the path to the actual one):
 

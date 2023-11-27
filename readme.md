@@ -33,6 +33,14 @@ This simple CSS extractor solves the issue when you need to scrape a website tha
 - Clone the git repository
 - Open the repository with your editor of choice
 - Run `npm i` or `pnpm i`
+- Run `npx @puppeteer/browsers install chrome@latest` to download the latest version of Chrome that will be used by Puppeteer
+- Specify the correct path to the chrome.exe file in the 'try' block as in the example below (pay attention to the browser version):
+
+```javascript
+browser = await puppeteer.launch({
+  executablePath: './chrome/win64-121.0.6146.0/chrome-win64/chrome.exe',
+});
+```
 
 ## Usage
 
@@ -41,14 +49,6 @@ This simple CSS extractor solves the issue when you need to scrape a website tha
 - Run `node index.js`
 
 Feel free to use this utility for any purposes.
-
-NB! If Puppeteer fails to launch the browser process, download it with [puppeteer@browsers](https://www.npmjs.com/package/@puppeteer/browsers) and change the `browser` const in the `try` block as in the example below (remember to update the path to the actual one):
-
-```javascript
-browser = await puppeteer.launch({
-  executablePath: './chrome/win64-121.0.6146.0/chrome-win64/chrome.exe',
-});
-```
 
 ## Open source
 

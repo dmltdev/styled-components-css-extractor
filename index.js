@@ -1,14 +1,33 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 
-//! Specify your URL and run this code
+//! Specify your URL
 const URL = 'https://styled-components.com';
+const fileName = formattedUrl(URL);
+
+function formattedUrl(url) {
+  let sanitizedUrl = url;
+  if (sanitizedUrl.includes('https://')) {
+    sanitizedUrl = sanitizedUrl.split('https://')[1];
+  } else if (sanitizedUrl.includes('http://')) {
+    sanitizedUrl = sanitizedUrl.split('http://')[1];
+  }
+
+  sanitizedUrl = sanitizedUrl.replace(/\./g, '_');
+
+  return sanitizedUrl;
+}
+
+console.log(fileName);
 
 (async () => {
   let browser;
 
   try {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({
+      //! Specify the actual path to the browser executable file
+      executablePath: './chrome/win64-121.0.6150.0/chrome-win64/chrome.exe',
+    });
 
     const page = await browser.newPage();
     await page.goto(URL);
@@ -37,7 +56,7 @@ const URL = 'https://styled-components.com';
     }
 
     const formattedCSS = allCSS.join('\n');
-    await fs.writeFile('styles.css', formattedCSS, 'utf-8');
+    await fs.writeFile(`./dist/${fileName}`, formattedCSS, 'utf-8');
 
     console.log('Successfully written CSS');
   } catch (error) {

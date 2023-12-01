@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 
 //! Specify your URL
-const URL = 'https://styled-components.com';
+const URL = 'https://open.spotify.com';
 const fileName = formattedUrl(URL);
 
 function formattedUrl(url) {
@@ -18,8 +18,6 @@ function formattedUrl(url) {
   return sanitizedUrl;
 }
 
-console.log(fileName);
-
 (async () => {
   let browser;
 
@@ -28,7 +26,6 @@ console.log(fileName);
       //! Specify the actual path to the browser executable file
       executablePath: './chrome/win64-121.0.6150.0/chrome-win64/chrome.exe',
     });
-
     const page = await browser.newPage();
     await page.goto(URL);
     await page.setViewport({ width: 1920, height: 1080 });
@@ -38,7 +35,6 @@ console.log(fileName);
         const styleSheet = link.sheet;
         return Array.from(styleSheet.cssRules).map(rule => rule.cssText);
       });
-
       return rules;
     };
 

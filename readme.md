@@ -26,7 +26,7 @@ However, if you need to scrape such a web page as non-owner, you cannot utilize 
 
 This simple CSS extractor solves the issue when you need to scrape a website that uses styled-components with CSSOM injection but the CSS rules are not scraped.
 
- It uses Puppeteer to launch a headless browser, retrieve the actual contents of the `<style>` element, format it and write it into the .css file. Please enjoy!
+It uses Puppeteer to launch a headless browser, retrieve the actual contents of the `<style>` element, format it and write it into the .css file. Please enjoy!
 
 ## Installation
 
@@ -41,6 +41,11 @@ browser = await puppeteer.launch({
   executablePath: './chrome/win64-121.0.6146.0/chrome-win64/chrome.exe',
 });
 ```
+
+## Manual Actions with the Login
+
+- Change puppeteer.launch to puppeteer.connect, add an option "browserURL" set to [localhost:9922]("http://localhost:9922")
+- Open cmd (in IDE/text editor), go to the directory with chrome.exe and run `chrome.exe --remote-debugging-port=992`
 
 ## Usage
 

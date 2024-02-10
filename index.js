@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
 
 //! Specify your URL
-const URL = 'https://open.spotify.com';
+const URL = 'https://styled-components.com';
 const fileName = formattedUrl(URL);
 
 function formattedUrl(url) {
@@ -14,6 +14,7 @@ function formattedUrl(url) {
   }
 
   sanitizedUrl = sanitizedUrl.replace(/\./g, '_');
+  sanitizedUrl = sanitizedUrl.replace(/\//g, '');
 
   return sanitizedUrl;
 }
@@ -25,10 +26,11 @@ function formattedUrl(url) {
     browser = await puppeteer.launch({
       //! Specify the actual path to the browser executable file
       executablePath: './chrome/win64-121.0.6150.0/chrome-win64/chrome.exe',
+      headless: false,
     });
     const page = await browser.newPage();
-    await page.goto(URL);
     await page.setViewport({ width: 1920, height: 1080 });
+    await page.goto(URL, { waitUntil: 'networkidle0' });
 
     const getCSSRules = async stylesheet => {
       const rules = await page.$eval(`style[data-styled]`, link => {
@@ -52,7 +54,7 @@ function formattedUrl(url) {
     }
 
     const formattedCSS = allCSS.join('\n');
-    await fs.writeFile(`./dist/${fileName}`, formattedCSS, 'utf-8');
+    await fs.writeFile(`./dist/${fileName}.css`, formattedCSS, 'utf-8');
 
     console.log('Successfully written CSS');
   } catch (error) {
